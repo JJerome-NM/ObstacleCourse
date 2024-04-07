@@ -1,13 +1,10 @@
 {
   "dependencies": {
-<<<<<<< HEAD
-=======
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.2",
     "com.unity.timeline": "1.8.6",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.8.0",
->>>>>>> 6e7e12c5ef65a05c49e85f5fce343f7cd8112b95
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
