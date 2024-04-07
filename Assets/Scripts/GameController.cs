@@ -30,19 +30,18 @@ public class GameController : MonoBehaviour
     private void OnGameStarted()
     {
         SpawnPlayer();
-        if (_playerController)
-        {
-            _playerController.EnablePlayerCamera();
-            generalCamera.enabled = false;
-        }
+        
+        if (!_playerController) return;
+        
+        _playerController.EnablePlayerCamera();
+        generalCamera.enabled = false;
     }
 
     private void OnGameStopped()
     {
-        if (_playerController)
-        {
-            _playerController.DisablePlayerCamera();
-        }
+        if (!_playerController) return;
+        
+        _playerController.DisablePlayerCamera();
         generalCamera.enabled = true;
     }
 
