@@ -43,8 +43,15 @@ public class PlayerController : MonoBehaviour
     
     private void KillPlayer()
     {
-        gameObject.SetActive(false);
-        PlayerEventManager.PlayerIsDead();
-        Destroy(gameObject);
+        PlayerEventManager.PlayerIsDead(gameObject);
+        GetComponentInParent<FullPlayerController>().DestoyMe();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("DeadZone"))
+        {
+            KillPlayer(); 
+        }
     }
 }

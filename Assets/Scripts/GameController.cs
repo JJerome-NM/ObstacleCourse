@@ -1,3 +1,5 @@
+using Level1;
+using Levels;
 using Player;
 using UnityEngine;
 
@@ -17,16 +19,11 @@ public class GameController : MonoBehaviour
     {
         GlobalEventManager.OnGameStarted.AddListener(OnGameStarted);
         GlobalEventManager.OnGameStopped.AddListener(OnGameStopped);
-        PlayerEventManager.OnPlayerDied.AddListener(OnPlayerDied);
-
+        
         GlobalEventManager.StopGame();
     }
 
-    private void OnPlayerDied()
-    {
-        GlobalEventManager.StopGame();
-    }
-
+   
     private void OnGameStarted()
     {
         SpawnPlayer();
@@ -47,7 +44,13 @@ public class GameController : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        _player = Instantiate(playerPrefab, spawnPosition.position, Quaternion.identity);
+        PlayerEventManager.PlayerIsSpawned(SpawnPlayer(spawnPosition.position));
+    }
+
+    public GameObject SpawnPlayer(Vector3 spawnPosition)
+    {
+        _player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
         _playerController = _player.GetComponentInChildren<PlayerController>();
+        return _player;
     }
 }

@@ -97,7 +97,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             _rb.AddForce(_moveDirection.normalized * moveSpead * 10f, ForceMode.Force);
         }
-        else if (!_grounded)
+        else
         {
             _rb.AddForce(_moveDirection.normalized * moveSpead * 10f * airMultiplier, ForceMode.Force);
         }

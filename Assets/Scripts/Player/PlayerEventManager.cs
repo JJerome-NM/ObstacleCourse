@@ -6,8 +6,8 @@ namespace Player
     public class PlayerEventManager : MonoBehaviour
     {
         public static readonly UnityEvent<float> OnPlayerStandingTimeChanged = new();
-        public static readonly UnityEvent OnPlayerDied = new();
-        public static readonly UnityEvent OnPlayerSpawned = new();
+        public static readonly UnityEvent<GameObject> OnPlayerDied = new();
+        public static readonly UnityEvent<GameObject> OnPlayerSpawned = new();
         
         
         public static void ChangePlayerStandingTime(float newTime)
@@ -15,14 +15,14 @@ namespace Player
             OnPlayerStandingTimeChanged.Invoke(newTime);
         }
         
-        public static void PlayerIsDead()
+        public static void PlayerIsDead(GameObject player)
         {
-            OnPlayerDied.Invoke();
+            OnPlayerDied.Invoke(player);
         }
 
-        public static void PlayerIsSpawned()
+        public static void PlayerIsSpawned(GameObject player)
         {
-            OnPlayerSpawned.Invoke();
+            OnPlayerSpawned.Invoke(player);
         }
     }
 }

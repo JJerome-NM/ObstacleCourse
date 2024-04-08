@@ -16,7 +16,7 @@ namespace UI
             GlobalEventManager.OnGameStopped.AddListener(OnGameStopped);
             PlayerEventManager.OnPlayerStandingTimeChanged.AddListener(ShowPlayerStandingTime);
         }
-
+        
         private void OnGameStopped()
         {
             mainPanel.SetActive(true);
