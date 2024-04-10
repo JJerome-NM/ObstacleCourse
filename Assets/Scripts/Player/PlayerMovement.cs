@@ -38,7 +38,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (GlobalStatesManager.IsGameStopped) return;
         
-        _grounded = Physics.Raycast(transform.position, Vector3.down, _playerHeight + 0.01f, whatIsGround);
+        _grounded = Physics.Raycast(transform.position, Vector3.down, _playerHeight + 0.05f, whatIsGround);
         
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");

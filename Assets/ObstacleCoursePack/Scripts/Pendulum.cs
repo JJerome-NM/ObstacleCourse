@@ -6,7 +6,7 @@ public class Pendulum : MonoBehaviour
 {
 	public float speed = 1.5f;
 	public float limit = 75f; //Limit in degrees of the movement
-	public bool randomStart = false; //If you want to modify the start position
+	public bool randomStart = true; //If you want to modify the start position
 	private float random = 0;
 
 	// Start is called before the first frame update

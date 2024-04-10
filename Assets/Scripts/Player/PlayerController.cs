@@ -6,29 +6,21 @@ public class PlayerController : MonoBehaviour
     [Header("Camera")] 
     [SerializeField] private Camera camera;
     [SerializeField] private int maxStandingTime = 30;
-    
-    private float _playerStandingTime;
-    private Rigidbody _rb;
 
+    private Rigidbody _rb;
+    private float _playerStandingTime;
+    
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _playerStandingTime = 0;
     }
-
+    
     private void Update()
     {
         _playerStandingTime = _rb.velocity.magnitude != 0 ? 0 : _playerStandingTime + Time.deltaTime;
         
         PlayerEventManager.ChangePlayerStandingTime(_playerStandingTime);
-    }
-
-    private void FixedUpdate()
-    {
-        if (_playerStandingTime > maxStandingTime)
-        {
-            KillPlayer();
-        }
     }
 
     public void DisablePlayerCamera()
@@ -41,7 +33,7 @@ public class PlayerController : MonoBehaviour
         camera.enabled = true;
     }
     
-    private void KillPlayer()
+    public void KillPlayer()
     {
         PlayerEventManager.PlayerIsDead(gameObject);
         GetComponentInParent<FullPlayerController>().DestoyMe();
@@ -52,6 +44,17 @@ public class PlayerController : MonoBehaviour
         if (other.tag.Equals("DeadZone"))
         {
             KillPlayer(); 
+        }
+        
+        if (other.CompareTag("FinalSword"))
+        {
+            GlobalEventManager.PlayerTakeSword();
+            other.gameObject.SetActive(false);
+        }
+        
+        if (other.CompareTag("Finish") && GlobalStatesManager.IsPlayerTakenSword)
+        {
+            GlobalEventManager.PlayerFinished();
         }
     }
 }

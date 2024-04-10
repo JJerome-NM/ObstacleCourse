@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Levels.Level1
 {
-    public class Level1Controller : MonoBehaviour, LevelController
+    public class Level1Controller : MonoBehaviour, ILevelController
     {
         [Header("Camera")] 
         [SerializeField] private Camera previewCamera;
@@ -31,9 +31,9 @@ namespace Levels.Level1
             {
                 PlayerEventManager.PlayerIsSpawned(player);
             });
-
             PlayerEventManager.OnPlayerDied.AddListener(PlayerIsDied);
             PlayerEventManager.OnPlayerSpawned.AddListener(OnPlayerSpawned);
+            GlobalEventManager.OnPlayerTakenSword.AddListener(() => _currentCheckPoint = checkPointPositions.Count - 1);
         }
 
         public void EnableLevelPreviewCamera()

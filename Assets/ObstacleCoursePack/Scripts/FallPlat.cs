@@ -8,13 +8,16 @@ public class FallPlat : MonoBehaviour
 
 	private void Start()
 	{
-		Level1EventManager.OnPlayerSpawnedOnCheckPoint.AddListener((_, _) =>
-		{
-			gameObject.SetActive(true);
-		});
+		GlobalEventManager.OnGameStarted.AddListener(SpawnMe);
+		Level1EventManager.OnPlayerSpawnedOnCheckPoint.AddListener((_, _) => SpawnMe());
+		GlobalEventManager.OnPlayerTakenSword.AddListener(SpawnMe);
 	}
 
-
+	void SpawnMe()
+	{
+		gameObject.SetActive(true);
+	}
+	
 	void OnCollisionEnter(Collision collision)
 	{
 		foreach (ContactPoint contact in collision.contacts)

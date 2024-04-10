@@ -2,7 +2,7 @@
 
 namespace Levels
 {
-    public interface LevelController
+    public interface ILevelController
     {
         public void EnableLevelPreviewCamera();
 
